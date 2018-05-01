@@ -281,7 +281,7 @@ def execFunction(input_path):
     out_toc = ""
     for item in new_lines:
         out_toc = out_toc + item
-    path = correct_path[:-2] + "_toc.md"
+    path = correct_path[:-3] + "_toc.md"
     fout = open(path.decode('utf8'), 'w')
     fout.writelines(out_toc)
     fout.close()
