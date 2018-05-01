@@ -273,6 +273,8 @@ def execFunction(input_path):
         new_lines.append(item + "\n")
     # 添加TOC与正文之间的分隔线
     new_lines.append("<hr style=\"margin:0em 0em 1.75em 0em;\">\n")
+    # 与博客配套的自定义的目录与正文的分隔符
+    new_lines.append("<!--break-->")
     # 写入正文剩余部分内容
     for i in range(11, lines.__len__()):
         new_lines.append(lines[i])
