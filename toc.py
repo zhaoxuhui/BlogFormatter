@@ -1,4 +1,5 @@
-# coding=utf-8
+-  # coding=utf-8
+
 
 def deleteLeftParentheses(string):
     if string.__contains__('('):
@@ -168,6 +169,14 @@ def getLink(base, string):
 
 def getBase(year, month, day, filename, part):
     res = part + "/" + year + "/" + month + "/" + day + "/" + filename + ".html"
+    while res.__contains__('、'):
+        res = replaceDunHao(strresing, '-')
+    while res.__contains__('#'):
+        res = replaceSharp(res, '-')
+    while res.__contains__(' '):
+        res = replaceSpace(res, '-')
+    while res.__contains__('：'):
+        res = replaceColon(res, '-')
     return res
 
 
