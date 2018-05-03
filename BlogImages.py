@@ -162,7 +162,7 @@ def insertImgTag(html1, html2, html3, new_paths, file_path):
 
 def execImgs():
     # 你的TinyPNG密钥
-    tinify.key = "xxxxxxxxxxxxxxxx"
+    tinify.key = "X-MOCVLhlFTeKJCIhHD-etqYwYmflH4p"
 
     # HTML img标签
     html_part1 = "<img src = \"http://zhaoxuhui.top/assets/images/blog/content/"
