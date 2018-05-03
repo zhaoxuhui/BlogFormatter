@@ -1,6 +1,5 @@
 # coding=utf-8
 
-
 def deleteLeftParentheses(string):
     if string.__contains__('('):
         left_col = string.find('(')
@@ -78,6 +77,48 @@ def deleteAnd(string):
         return string
 
 
+def deleteZuoKuohao(string):
+    if string.__contains__('（'):
+        zuo = string.find('（')
+        string = string[:zuo] + string[zuo + 3:]
+        return string
+
+
+def deleteYouKuohao(string):
+    if string.__contains__('）'):
+        you = string.find('）')
+        string = string[:you] + string[you + 3:]
+        return string
+
+
+def deleteXiexian(string):
+    if string.__contains__('/'):
+        xie = string.find('/')
+        string = string[:xie] + string[xie + 1:]
+        return string
+
+
+def deleteDouhao(string):
+    if string.__contains__(','):
+        dou = string.find(',')
+        string = string[:dou] + string[dou + 1:]
+        return string
+
+
+def deleteDouhaoZH(string):
+    if string.__contains__('，'):
+        dou = string.find('，')
+        string = string[:dou] + string[dou + 3:]
+        return string
+
+
+def deleteMaohaoZH(string):
+    if string.__contains__('：'):
+        mao = string.find('：')
+        string = string[:mao] + string[mao + 3:]
+        return string
+
+
 def replaceDunHao(string, replace):
     if string.__contains__('、'):
         dun = string.find('、')
@@ -139,13 +180,24 @@ def getTitle(raw_str):
         title = deleteRightDoubleQuoteMark(title)
     while title.__contains__('['):
         title = deleteLeftBracket(title)
-        # print(title)
     while title.__contains__(']'):
         title = deleteRightBracket(title)
     while title.__contains__('+'):
         title = deleteAdd(title)
     while title.__contains__('&'):
         title = deleteAnd(title)
+    while title.__contains__('（'):
+        title = deleteZuoKuohao(title)
+    while title.__contains__('）'):
+        title = deleteYouKuohao(title)
+    while title.__contains__('/'):
+        title = deleteXiexian(title)
+    while title.__contains__(','):
+        title = deleteDouhao(title)
+    while title.__contains__('，'):
+        title = deleteDouhaoZH(title)
+    while title.__contains__('：'):
+        title = deleteMaohaoZH(title)
     while title.__contains__(' '):
         title = replaceSpace(title, '-')
 
@@ -170,7 +222,7 @@ def getLink(base, string):
 def getBase(year, month, day, filename, part):
     res = part + "/" + year + "/" + month + "/" + day + "/" + filename + ".html"
     while res.__contains__('、'):
-        res = replaceDunHao(strresing, '-')
+        res = replaceDunHao(res, '-')
     while res.__contains__('#'):
         res = replaceSharp(res, '-')
     while res.__contains__(' '):
@@ -215,7 +267,7 @@ def execFunction(input_path):
     part = "http://zhaoxuhui.top/blog"
 
     # 判断手动输入还是自动传入
-    flag = raw_input("Auto insert?y/n\n")
+    flag = raw_input("Auto input file path?y/n\n")
     if flag == "y":
         path = input_path
     else:
@@ -240,8 +292,11 @@ def execFunction(input_path):
         print("No title.")
         exit()
 
-    # 获取除去`_auto`后缀的正确的名字
-    correct_path = input_path[:-8] + ".md"
+    if flag != "y":
+        correct_path = path[:-3]
+    else:
+        # 获取除去`_auto`后缀的正确的名字
+        correct_path = path[:-8] + ".md"
     year, month, day, name = splitInfo(correct_path)
     base = getBase(year, month, day, name, part)
 
@@ -292,8 +347,8 @@ def execFunction(input_path):
     out_toc = ""
     for item in new_lines:
         out_toc = out_toc + item
-    path = correct_path[:-3] + "_toc.md"
-    fout = open(path.decode('utf8'), 'w')
+    save_path = correct_path + "_toc.md"
+    fout = open(save_path.decode('utf8'), 'w')
     fout.writelines(out_toc)
     fout.close()
 
