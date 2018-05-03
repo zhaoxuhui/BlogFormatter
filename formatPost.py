@@ -2,6 +2,7 @@ import toc
 import BlogImages
 
 flag0 = raw_input("Auto generate IMG?y/n\n")
+out_res = ""
 if flag0 == "y":
     print("Format images...\n")
     out_res = BlogImages.execImgs()
