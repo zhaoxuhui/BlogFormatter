@@ -132,7 +132,10 @@ def tinifyImage(image_paths):
 def generateHTML(html1, html2, html3, new_paths, root):
     f = open(root + "\\img_tag.txt", "w")
     for item in new_paths:
-        f.write(html1 + item[item.rfind("\\") + 1:] + html2 + cv2.imread(item).shape[1].__str__() + html3 + "\n")
+        if cv2.imread(item).shape[1]>680:
+            f.write(html1 + item[item.rfind("\\") + 1:] + html2 + '680' + html3 + "\n")
+        else:
+            f.write(html1 + item[item.rfind("\\") + 1:] + html2 + cv2.imread(item).shape[1].__str__() + html3 + "\n")
     f.close()
     print "HTML tag generated successfully."
 
@@ -144,7 +147,11 @@ def insertImgTag(html1, html2, html3, new_paths, file_path):
     out = ""
 
     for item in new_paths:
-        img_tags.append(
+        if cv2.imread(item).shape[1]>680:
+            img_tags.append(
+            html1 + item[item.rfind("\\") + 1:] + html2 + '680' + html3 + "\n")
+        else:
+            img_tags.append(
             html1 + item[item.rfind("\\") + 1:] + html2 + cv2.imread(item).shape[1].__str__() + html3 + "\n")
 
     f = open(file_path)
