@@ -237,10 +237,10 @@ def splitInfo(file_path):
     index = file_path.rfind('\\')
     filename = file_path[index + 1:]
     temp = filename.split('-')
-    year = temp[0]
-    month = temp[1]
-    day = temp[2]
-    filename = temp[3].split('.')[0]
+    year = filename[0:4]
+    month = filename[5:7]
+    day = filename[8:10]
+    filename = filename[11:]
     return year, month, day, filename
 
 
