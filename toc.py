@@ -296,7 +296,7 @@ def execFunction(input_path):
         correct_path = path[:-3]
     else:
         # 获取除去`_auto`后缀的正确的名字
-        correct_path = path[:-8] + ".md"
+        correct_path = path[:-8]
     year, month, day, name = splitInfo(correct_path)
     base = getBase(year, month, day, name, part)
 
