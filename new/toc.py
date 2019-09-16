@@ -292,11 +292,11 @@ def execFunction(input_path):
             headers.append(line.decode('utf-8').encode('utf-8'))
     f.close()
 
-    if flag != "y":
-        correct_path = path[:-3]
-    else:
-        # 获取除去`_auto`后缀的正确的名字
+    if flag == "" or flag == "y" or flag == "Y":
+        # 获取除去`_auto`后缀的正确的名字 _auto.md
         correct_path = path[:-8]
+    else:
+        correct_path = path[:-3]
     year, month, day, name = splitInfo(correct_path)
     base = getBase(year, month, day, name, part)
 

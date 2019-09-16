@@ -275,7 +275,7 @@ def execImgs():
         if flag3 == "" or flag3 == "y" or flag3 == "Y":
             # 第六步，生成每个文件对应的img标签并自动插入
             # 注意文件名不支持中文
-            flag4 = raw_input("\nAuto input file path?y/n\n")
+            flag4 = raw_input("\nAuto input file path?[y]/n\n")
             if flag4 == "" or flag4 == "y" or flag4 == "Y":
                 _,_,f = findAllFiles(os.getcwd(),".md")
                 file_path  = f[0]

@@ -121,7 +121,7 @@ def execIndex():
                 exit()
         else:
             file_name = n[0][:-7]
-            urls.append(file_name)
+            urls.append(splitName(file_name))
     else:
         name = raw_input("Input file name:\n")
         file_name = name.split("\\")[-1].split(".")[0]
